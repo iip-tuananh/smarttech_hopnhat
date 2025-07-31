@@ -8,6 +8,11 @@
 @section('css')
     <link href="/site/css/breadcrumb_style.scss.css?1743048451127" rel="stylesheet" type="text/css" media="all" />
     <link href="/site/css/collection_style.scss.css?1743048451127" rel="stylesheet" type="text/css" media="all" />
+    <style>
+        .filter-item a.active {
+            color: #0370b8 !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -48,6 +53,32 @@
                                     </div>
                                 </div>
                                 <div class="clearfix"></div>
+                                <aside class="aside-item filter-tag-style-2 tag-size">
+                                    <div class="aside-title">
+                                        Danh mục sản phẩm
+                                        <span class="nd-svg collapsible-plus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="5"
+                                                viewBox="0 0 10 5" fill="none">
+                                                <path
+                                                    d="M0.993164 0.968199L5.0001 4.97514L9.00704 0.968201L8.06423 0.0253911L5.0001 3.08952L1.93597 0.0253906L0.993164 0.968199Z"
+                                                    fill="#333333" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="aside-content filter-group">
+                                        <ul>
+                                            @foreach ($categories as $cate)
+                                                <li class="filter-item filter-item--check-box filter-item--green">
+                                                    <a href="{{ route('front.show-product-category', ['categorySlug' => $cate->slug]) }}"
+                                                        style="text-decoration: none; color: #333333;"
+                                                        class="{{ Route::currentRouteName() == 'front.show-product-category' &&  $cate->slug == $category->slug ? 'active' : '' }}">
+                                                        {{ $cate->name }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                </aside>
                                 @foreach ($attributes as $attribute)
                                     @if ($attribute->tags->count() > 0)
                                         <aside class="aside-item filter-tag-style-2 tag-size">

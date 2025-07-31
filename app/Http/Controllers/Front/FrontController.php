@@ -231,7 +231,7 @@ class FrontController extends Controller
 
     public function showProductCategory(Request $request, $categorySlug = null)
     {
-        $categories = Category::parent()->with('products')->orderBy('sort_order')->get();
+        $categories = Category::with('products')->orderBy('sort_order')->get();
         $category = Category::with(['childs'])->where('slug', $categorySlug)->first();
 
         $attributes = [];

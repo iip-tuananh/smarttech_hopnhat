@@ -56,7 +56,7 @@
         }
 
         #header .header-top-top .logo-position-header .logo img {
-            background-color: #fff;
+            background-color: #343434;
             padding: 10px 20px;
             /* width: 100%; */
             height: 100%;

@@ -42,13 +42,13 @@ app.run(function ($rootScope) {
     };
 });
 
-app.directive("ckEditor", function () {
+app.directive("ckEditor", function() {
     return {
         require: "?ngModel",
         scope: {
-            height: "@",
+            height: "@"
         },
-        link: function (scope, elm, attr, ngModel) {
+        link: function(scope, elm, attr, ngModel) {
             var ck = CKEDITOR.replace(elm[0], {
                 allowedContent: {
                     $1: {
@@ -56,21 +56,22 @@ app.directive("ckEditor", function () {
                         elements: CKEDITOR.dtd,
                         attributes: true,
                         styles: true,
-                        classes: true,
-                    },
+                        classes: true
+                    }
                 },
                 disallowedContent: "script; *[on*]",
+                extraAllowedContent: 'div[data-oembed-url]; iframe[*];',
                 height: scope.height || 350,
                 basicEntities: false,
                 enterMode: CKEDITOR.ENTER_DIV,
                 bodyClass: "document-editor",
-                extraPlugins: "tableresize,pastefromword,lineheight",
+                extraPlugins: "tableresize,pastefromword,lineheight,youtubebutton",
                 line_height: "1;1.2;1.5;2;3;4",
                 toolbar: [
                     { name: "document", items: ["Source"] },
                     {
                         name: "editing",
-                        items: ["Find", "Replace", "-", "SelectAll"],
+                        items: ["Find", "Replace", "-", "SelectAll"]
                     },
                     {
                         name: "clipboard",
@@ -82,8 +83,8 @@ app.directive("ckEditor", function () {
                             "PasteFromWord",
                             "-",
                             "Undo",
-                            "Redo",
-                        ],
+                            "Redo"
+                        ]
                     },
                     { name: "forms", items: ["Checkbox", "Radio"] },
                     {
@@ -93,8 +94,8 @@ app.directive("ckEditor", function () {
                             "Italic",
                             "Underline",
                             "Strike",
-                            "RemoveFormat",
-                        ],
+                            "RemoveFormat"
+                        ]
                     },
                     {
                         name: "paragraph",
@@ -108,19 +109,21 @@ app.directive("ckEditor", function () {
                             "JustifyLeft",
                             "JustifyCenter",
                             "JustifyRight",
-                            "JustifyBlock",
-                        ],
+                            "JustifyBlock"
+                        ]
                     },
                     {
                         name: "insert",
                         items: [
                             "Image",
+                            "YouTube",
                             "Table",
                             "HorizontalRule",
                             "SpecialChar",
-                            "PageBreak",
-                        ],
+                            "PageBreak"
+                        ]
                     },
+                    { name: "links", items: ["Link", "Unlink", "Anchor"] },
                     "/",
                     {
                         name: "styles",
@@ -129,22 +132,22 @@ app.directive("ckEditor", function () {
                             "Format",
                             "Font",
                             "FontSize",
-                            "lineheight",
-                        ],
+                            "lineheight"
+                        ]
                     },
                     { name: "colors", items: ["TextColor", "BGColor"] },
-                    { name: "tools", items: ["Maximize"] },
-                ],
+                    { name: "tools", items: ["Maximize"] }
+                ]
             });
 
             if (!ngModel) return;
 
-            ck.on("instanceReady", function () {
+            ck.on("instanceReady", function() {
                 ck.setData(ngModel.$viewValue);
             });
 
             function updateModel() {
-                scope.$apply(function () {
+                scope.$apply(function() {
                     ngModel.$setViewValue(ck.getData());
                 });
             }
@@ -154,16 +157,16 @@ app.directive("ckEditor", function () {
             ck.on("dataReady", updateModel);
             ck.on("blur", updateModel);
 
-            ck.on("pasteState", function () {
-                scope.$apply(function () {
+            ck.on("pasteState", function() {
+                scope.$apply(function() {
                     ngModel.$setViewValue(ck.getData());
                 });
             });
 
-            ngModel.$render = function (value) {
+            ngModel.$render = function(value) {
                 ck.setData(ngModel.$viewValue);
             };
-        },
+        }
     };
 })
     .directive("ckEditorPrint", function () {

@@ -18,21 +18,21 @@
                                 alt="Facebook">
                         </a>
                         <a href="{{ $config->twitter }}" class="social-button" title="Twitter">
-                            <img src="/site/images/twitter.png"
-                                alt="Twitter">
+                            <img src="/site/images/shopee-circle-icon.svg"
+                                alt="Shopee">
                         </a>
-                        <a href="{{ $config->linkedin }}" class="social-button" title="Linkedin">
-                            <img src="/site/images/linkedin.png"
-                                alt="Linkedin">
+                        <a href="{{ $config->instagram }}" class="social-button" title="Linkedin">
+                            <img src="/site/images/tiktok-circle-icon.svg"
+                                alt="Tiktok">
                         </a>
                         <a href="{{ $config->youtube }}" class="social-button" title="Youtube">
                             <img src="/site/images/youtube.png"
                                 alt="Youtube">
                         </a>
-                        <a href="{{ $config->instagram }}" class="social-button" title="Instagram">
+                        {{-- <a href="{{ $config->instagram }}" class="social-button" title="Instagram">
                             <img src="/site/images/instagram.png"
                                 alt="Instagram">
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
                 <div class="col-xl-2 col-lg-3 col-md-6 col-12 link-list col-footer">
