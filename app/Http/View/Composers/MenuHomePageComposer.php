@@ -55,7 +55,7 @@ class MenuHomePageComposer
         //     $waiting_quyet_toan_amount = 0;
         // }
 
-        $postCategories = PostCategory::query()->where(['parent_id' => 0, 'show_home_page' => 1])->latest()->get();
+        $postCategories = PostCategory::query()->where(['parent_id' => 0])->latest()->get();
 
         $view->with(['productCategories' => $productCategories, 'postCategories' => $postCategories, 'categorySpecialFlashsale' => $categorySpecialFlashsale]);
     }
